@@ -1,0 +1,46 @@
+{
+  "name": "@zthun/support.api",
+  "version": "0.0.0-0",
+  "description": "This is the support api used to get, create, and update tickets for the zthunworks domain.",
+  "author": "Anthony Bonta",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zthun/support",
+    "directory": "packages/support.api"
+  },
+  "main": "./dist/main.js",
+  "bin": {
+    "zthun-support-api": "./bin/main.js"
+  },
+  "engines": {
+    "node": ">=16.6.0 <18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "docker:publish": "docker push zthun/support.api && docker push zthun/support.api:$(node -p \"require('./package.json').version\")",
+    "docker:build": "npm pack && docker build . -t zthun/support.api:latest -t zthun/support.api:$(node -p \"require('./package.json').version\")",
+    "debug": "nodemon",
+    "build": "tsc -p ./tsconfig.prod.json",
+    "start": "node ./dist/main.js"
+  },
+  "dependencies": {
+    "@nestjs/common": "^8.2.6",
+    "@nestjs/core": "^8.2.6",
+    "@nestjs/microservices": "^8.2.6",
+    "@nestjs/platform-express": "^8.2.6",
+    "@zthun/works.core": "^3.0.2",
+    "@zthun/works.microservices": "^3.0.7",
+    "@zthun/works.nest": "^3.1.0",
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.5.2"
+  },
+  "files": [
+    "dist",
+    "images"
+  ],
+  "sideEffects": false
+}

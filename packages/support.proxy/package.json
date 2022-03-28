@@ -1,0 +1,13 @@
+{
+  "name": "@zthun/support.proxy",
+  "version": "0.0.0-0",
+  "private": true,
+  "description": "A reverse proxy for the support service that is meant to run in docker for development.",
+  "author": "Anthony Bonta",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zthun/support",
+    "directory": "packages/support.proxy"
+  }
+}

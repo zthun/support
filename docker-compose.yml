@@ -1,0 +1,66 @@
+services:
+  # Load Balancer (Entry Point)
+  support.local.zthunworks.com:
+    image: zthun/works.proxy:latest
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    depends_on:
+      - support-services-api
+      - support-services-web
+      - database.zthunworks.com
+      - smtp.zthunworks.com
+    volumes:
+      - ./packages/support.proxy/conf.d:/etc/nginx/conf.d
+  # Node Ports
+  support-services-web:
+    image: node:17.3.0
+    volumes:
+      - .:/usr/dev
+    working_dir: /usr/dev
+    command: npm --workspace @zthun/support.web run debug
+  support-services-api:
+    image: node:17.3.0
+    ports:
+      - 9229:9229
+    volumes:
+      - .:/usr/dev
+    depends_on:
+      - zthunworks-services-users
+      - zthunworks-services-vault
+      - zthunworks-services-notifications
+      - zthunworks-services-cookies
+      - zthunworks-services-apps
+    working_dir: /usr/dev
+    command: npm --workspace @zthun/support.api run debug
+  zthunworks-services-users:
+    image: zthun/works.users:latest
+    environment:
+      - DATABASE_URL=mongodb://support-database:27017
+    depends_on:
+      - support-database
+  zthunworks-services-vault:
+    image: zthun/works.vault:latest
+    environment:
+      - DATABASE_URL=mongodb://support-database:27017
+    depends_on:
+      - support-database
+  zthunworks-services-notifications:
+    image: zthun/works.notifications:latest
+  zthunworks-services-cookies:
+    image: zthun/works.cookies:latest
+  zthunworks-services-apps:
+    image: zthun/works.apps:latest
+  # Databases
+  support-database:
+    image: mongo:5.0.5
+  # Utilities
+  database.zthunworks.com:
+    image: mongo-express:0.54.0
+    depends_on:
+      - support-database
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=support-database
+  smtp.zthunworks.com:
+    image: rnwood/smtp4dev:v3.1

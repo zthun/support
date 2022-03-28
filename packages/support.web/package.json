@@ -1,0 +1,35 @@
+{
+  "name": "@zthun/support.web",
+  "version": "0.0.0-0",
+  "description": "The web client for the support application.",
+  "browser": "./dist/support.web.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zthun/support",
+    "directory": "packages/support.web"
+  },
+  "scripts": {
+    "docker:publish": "docker push zthun/support.web && docker push zthun/support.web:$(node -p \"require('./package.json').version\")",
+    "docker:build": "docker build . -t zthun/support.web:latest -t zthun/support.web:$(node -p \"require('./package.json').version\")",
+    "build": "webpack --env production",
+    "debug": "webpack serve --env development --host 0.0.0.0"
+  },
+  "author": "Anthony Bonta",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "images"
+  ],
+  "devDependencies": {
+    "@zthun/works.core": "^3.0.2",
+    "@zthun/works.draw": "^3.1.0",
+    "@zthun/works.react": "^3.1.0",
+    "@zthun/works.url": "^3.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "sideEffects": false
+}
