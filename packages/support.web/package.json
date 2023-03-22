@@ -24,12 +24,12 @@
     "images"
   ],
   "devDependencies": {
-    "@zthun/works.core": "^3.0.2",
-    "@zthun/works.draw": "^3.1.0",
-    "@zthun/works.react": "^3.1.0",
-    "@zthun/works.url": "^3.0.7",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@zthun/works.core": "^4.0.0",
+    "@zthun/works.draw": "^4.0.0",
+    "@zthun/works.react": "^4.0.0",
+    "@zthun/works.url": "^4.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "sideEffects": false
 }
