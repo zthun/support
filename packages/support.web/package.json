@@ -1,6 +1,6 @@
 {
   "name": "@zthun/support.web",
-  "version": "0.0.0-0",
+  "version": "0.0.0",
   "description": "The web client for the support application.",
   "browser": "./dist/support.web.min.js",
   "repository": {

@@ -1,6 +1,6 @@
 {
   "name": "@zthun/support.api",
-  "version": "0.0.0-0",
+  "version": "0.0.0",
   "description": "This is the support api used to get, create, and update tickets for the zthunworks domain.",
   "author": "Anthony Bonta",
   "license": "MIT",
